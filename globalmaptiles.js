@@ -6,7 +6,7 @@ const pi_2 = Math.PI * 2;
 const pi = Math.PI;
 const _180_div_pi = 180 / Math.PI;
 
-class GlobalMercator {
+export default class GlobalMercator {
     constructor() {
         this.tileSize = 256;
         this.initialResolution = pi_2 * 6378137 / this.tileSize;
@@ -163,5 +163,3 @@ class GlobalMercator {
         return { tx: tx, ty: ty, zoom: zoom };
     }
 }
-
-module.exports = GlobalMercator;

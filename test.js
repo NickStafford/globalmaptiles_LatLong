@@ -1,4 +1,4 @@
-let GlobalMercator = require('./globalmaptiles');
+import GlobalMercator  from './globalmaptiles.js';
 
 function runTest(
     zoom,

@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/NickStafford/globalmaptiles_LatLong.git"
   },
+  "type": "module",
   "keywords": [
     "tiles",
     "maptiles",
