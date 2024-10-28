@@ -45,6 +45,9 @@ function runTest(
     result = gm.TileBounds(tile.tx, tile.ty, zoom);
     output(result, tileBounds, "TileBounds");
 
+    result = gm.TileLatLonBounds(tile.tx, tile.ty, zoom);
+    output(result, tileBounds, "TileLatLonBounds");
+
     result = gm.LatLonToTile(geographic.lat, geographic.lon, zoom);
     output(result, tile, "LatLonToTile");
 

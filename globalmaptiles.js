@@ -45,6 +45,16 @@ class GlobalMercator {
         return this.initialResolution / Math.pow(2, zoom);
     }
 
+    TileLatLonBounds(tx, ty, zoom) {
+        // Returns bounds of the given tile in latutude/longitude using WGS84 datum
+
+        let bounds = this.TileBounds(tx, ty, zoom)
+        let {minLat, minLon} = this.MetersToLatLon(bounds[0], bounds[1])
+        let {maxLat, maxLon} = this.MetersToLatLon(bounds[2], bounds[3])
+
+        return (minLat, minLon, maxLat, maxLon)
+    }
+
     TileBounds(tx, ty, zoom) {
         // Returns bounds of the given tile in EPSG:900913 coordinates
         let minx, miny, maxx, maxy;
