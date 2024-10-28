@@ -1,0 +1,24 @@
+{
+  "name": "@nick.stafford/globalmaptiles_latlong",
+  "version": "1.0.0",
+  "description": "JS implementation of the global map tiles conversion math provided publicly by maptiler (https://docs.maptiler.com/google-maps-coordinates-tile-bounds-projection). Includes conversion from tiles to lat lon bounds.",
+  "main": "globalmaptiles.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickStafford/globalmaptiles_LatLong.git"
+  },
+  "keywords": [
+    "tiles",
+    "maptiles",
+    "conversion"
+  ],
+  "author": "Nick Stafford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NickStafford/globalmaptiles_LatLong/issues"
+  },
+  "homepage": "https://github.com/NickStafford/globalmaptiles_LatLong#readme"
+}
