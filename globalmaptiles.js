@@ -49,10 +49,10 @@ class GlobalMercator {
         // Returns bounds of the given tile in latutude/longitude using WGS84 datum
 
         let bounds = this.TileBounds(tx, ty, zoom)
-        let {minLat, minLon} = this.MetersToLatLon(bounds[0], bounds[1])
-        let {maxLat, maxLon} = this.MetersToLatLon(bounds[2], bounds[3])
+        let {lat: minLat, lon: minLon} = this.MetersToLatLon(bounds.minx, bounds.miny)
+        let {lat: maxLat, lon: maxLon} = this.MetersToLatLon(bounds.maxx, bounds.maxy)
 
-        return (minLat, minLon, maxLat, maxLon)
+        return {minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat};
     }
 
     TileBounds(tx, ty, zoom) {
