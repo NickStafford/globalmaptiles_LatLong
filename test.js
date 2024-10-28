@@ -8,6 +8,7 @@ function runTest(
     tile,
     googleTile,
     tileBounds,
+    tileLatLonBounds,
     quadKey
 ) {
     let gm = new GlobalMercator();
@@ -46,7 +47,7 @@ function runTest(
     output(result, tileBounds, "TileBounds");
 
     result = gm.TileLatLonBounds(tile.tx, tile.ty, zoom);
-    output(result, tileBounds, "TileLatLonBounds");
+    output(result, tileLatLonBounds, "TileLatLonBounds");
 
     result = gm.LatLonToTile(geographic.lat, geographic.lon, zoom);
     output(result, tile, "LatLonToTile");
@@ -94,6 +95,12 @@ let tileBounds = {
     maxx: 1565430.3392804079,
     maxy: 6887893.492833804
 };
+let tileLatLonBounds = {
+    minLon: 11.249999999999993,
+    minLat: 50.73645513701064,
+    maxLon: 14.062499999999986,
+    maxLat: 52.482780222078226
+};
 let quadKey = "1202120";
 runTest(
     zoom,
@@ -103,6 +110,7 @@ runTest(
     tile,
     googleTile,
     tileBounds,
+    tileLatLonBounds,
     quadKey
 );
 
@@ -134,6 +142,7 @@ tileBounds = {
     maxx: 20037508.342789244,
     maxy: 20037508.342789244
 };
+tileLatLonBounds = { minLon: 0, minLat: 0, maxLon: 180, maxLat: 85.0511287798066 };
 quadKey = "1";
 runTest(
     zoom,
@@ -143,6 +152,7 @@ runTest(
     tile,
     googleTile,
     tileBounds,
+    tileLatLonBounds,
     quadKey
 );
 
@@ -174,6 +184,12 @@ tileBounds = {
     maxx: 1487158.8223163895,
     maxy: 6868325.613592796
 };
+tileLatLonBounds = {
+    minLon: 13.183593750000007,
+    minLat: 52.26815737376817,
+    maxLon: 13.359375000000002,
+    maxLat: 52.3755991766591
+};
 quadKey = "12021201013";
 runTest(
     zoom,
@@ -183,6 +199,7 @@ runTest(
     tile,
     googleTile,
     tileBounds,
+    tileLatLonBounds,
     quadKey
 );
 
@@ -214,6 +231,12 @@ tileBounds = {
     maxx: 1474928.8977907598,
     maxy: 6857318.681519732
 };
+tileLatLonBounds = {
+    minLon: 13.238525390624998,
+    minLat: 52.308478623663355,
+    maxLon: 13.24951171874999,
+    maxLat: 52.315195264379575
+};
 quadKey = "120212010132103";
 runTest(
     zoom,
@@ -223,5 +246,6 @@ runTest(
     tile,
     googleTile,
     tileBounds,
+    tileLatLonBounds,
     quadKey
 );
