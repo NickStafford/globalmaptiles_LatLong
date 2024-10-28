@@ -8,3 +8,6 @@ You can ran the test with node or python directly:
 node test.js
 python test.py
 ```
+
+> [!NOTE]
+> Please note that currently the "PixelsToMeters" test fails. This is due to a rounding error meaning the least significant decimal is out.
