@@ -1,5 +1,5 @@
 {
-  "name": "@nick.stafford/globalmaptiles_latlong",
+  "name": "globalmaptiles_latlong",
   "version": "1.0.0",
   "description": "JS implementation of the global map tiles conversion math provided publicly by maptiler (https://docs.maptiler.com/google-maps-coordinates-tile-bounds-projection). Includes conversion from tiles to lat lon bounds.",
   "main": "globalmaptiles.js",
