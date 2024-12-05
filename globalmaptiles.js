@@ -46,6 +46,10 @@ export default class GlobalMercator {
     }
 
     TileLatLonBounds(tx, ty, zoom) {
+        tx = parseInt(tx);
+        ty = parseInt(ty);
+        zoom = parseInt(zoom);
+
         // Returns bounds of the given tile in latutude/longitude using WGS84 datum
 
         let bounds = this.TileBounds(tx, ty, zoom)
@@ -56,6 +60,10 @@ export default class GlobalMercator {
     }
 
     TileBounds(tx, ty, zoom) {
+        tx = parseInt(tx);
+        ty = parseInt(ty);
+        zoom = parseInt(zoom);
+
         // Returns bounds of the given tile in EPSG:900913 coordinates
         let minx, miny, maxx, maxy;
         minx = this.PixelsToMeters(
