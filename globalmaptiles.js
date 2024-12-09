@@ -90,7 +90,7 @@ export default class GlobalMercator {
         // Returns a zoom level and center coordinates for the given extent
         let mxmin = this.LatLonToMeters(minLat, minLon);
         let mxmax = this.LatLonToMeters(maxLat, maxLon);
-        let zoom = this.Zoom(mxmin.mx, mxmin.my, mxmax.mx, mxmax.my, width, height);
+        let zoom = this.GetZoomForMeterExtents(mxmin.mx, mxmin.my, mxmax.mx, mxmax.my, width, height);
         let center = this.MetersToLatLon((mxmin.mx + mxmax.mx) / 2, (mxmin.my + mxmax.my) / 2);
         return {zoom: zoom, center: center};
     }
