@@ -40,9 +40,26 @@ export default class GlobalMercator {
         return { px: px, py: py };
     }
 
+    /**
+     * For any given zoom, returns the resolution in meters per pixel
+     * @param {*} zoom 
+     * @returns Resolution in meters per pixel.
+     * @remarks Inverse of the ZoomForResolution method
+     */
     Resolution(zoom) {
         // Resolution (meters/pixel) for given zoom level (measured at Equator)
         return this.initialResolution / Math.pow(2, zoom);
+    }
+
+    /**
+     * For any given resolution (meters per pixel), returns the zoom level
+     * @param {*} resolution 
+     * @returns Zoom level
+     */
+    ZoomForResolution(resolution)
+    {
+        // Zoom level corresponding to the given resolution
+        return Math.log2(this.initialResolution / resolution);
     }
 
     TileLatLonBounds(tx, ty, zoom) {
@@ -57,6 +74,54 @@ export default class GlobalMercator {
         let {lat: maxLat, lon: maxLon} = this.MetersToLatLon(bounds.maxx, bounds.maxy)
 
         return {minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat};
+    }
+
+    /**
+     * Given a bounding box in lat/lon, returns the zoom level and center coordinates that fits the bounding box in the given width and height
+     * @param {*} minLon 
+     * @param {*} minLat 
+     * @param {*} maxLon 
+     * @param {*} maxLat 
+     * @param {*} width 
+     * @param {*} height 
+     * @returns Object with zoom level and center coordinates
+     */
+    ExtentToZoomAndCenter(minLon, minLat, maxLon, maxLat, width, height) {
+        // Returns a zoom level and center coordinates for the given extent
+        let mxmin = this.LatLonToMeters(minLat, minLon);
+        let mxmax = this.LatLonToMeters(maxLat, maxLon);
+        let zoom = this.Zoom(mxmin.mx, mxmin.my, mxmax.mx, mxmax.my, width, height);
+        let center = this.MetersToLatLon((mxmin.mx + mxmax.mx) / 2, (mxmin.my + mxmax.my) / 2);
+        return {zoom: zoom, center: center};
+    }
+
+    /**
+     * For a given extent in meters, returns a zoom level that fits the extent in the given pixel width and height
+     * @param {*} mxmin Meters X min
+     * @param {*} mymin Meters Y min
+     * @param {*} mxmax Meters X max
+     * @param {*} mymax Meters Y max
+     * @param {*} width Pixels bounding Width
+     * @param {*} height Pixles bounding Height
+     * @returns Zoom Level
+     */
+    GetZoomForMeterExtents(mxmin, mymin, mxmax, mymax, width, height) {
+        // Get axis deltas
+        let dy = mymax - mymin;
+        let dx = mxmax - mxmin;
+
+        //Work out resolution needed to make the axis deltas match the width and height
+        let widthResolution = dx/width;
+        let heightResolution = dy/height;
+
+        //If we find the maximum resolution then the lower one will be implicitly satisfied
+        let targetResolution = Math.max(widthResolution, heightResolution);
+
+        //Find zoom level at which axis deltas match width and height
+        let maxZoom = this.ZoomForResolution(targetResolution);
+
+        //Return the zoom level
+        return maxZoom;
     }
 
     TileBounds(tx, ty, zoom) {
